@@ -1,6 +1,6 @@
 #! /usr/bin/env nix-shell
 -- #! nix-shell deps.nix -i "ghci -fdefer-type-errors"
-#! nix-shell deps.nix -i 'runhaskell --ghc-arg=-threaded --ghc-arg=-Wall'
+#! nix-shell shell.nix -i 'runhaskell --ghc-arg=-threaded --ghc-arg=-Wall'
 #! nix-shell --pure
 
 module Main where
@@ -39,18 +39,27 @@ rules :: Rules ()
 rules = do
   buildDir </> "*.pdf" %> \out -> do
     let inp = out -<.> "tex"
-    need [inp]
+        theme = map (buildDir </>) ["beamercolorthemecodecentric.sty"
+                                   ,"beamerfontthemecodecentric.sty"
+                                   ,"beamerinnerthemecodecentric.sty"
+                                   ,"beamerouterthemecodecentric.sty"
+                                   ,"beamerthemecodecentric.sty"
+                                   ]
+    need (inp : theme)
     latexmk inp
-    copyFileChanged (inp -<.> "pdf") out
 
   buildDir </> "*.tex" %> \out -> do
     copyFileChanged (dropDirectory1 out) out
 
+  buildDir </> "*.sty" %> \out -> do
+    copyFileChanged (dropDirectory1 out) out
+
 latexmk :: FilePath -> Action ()
 latexmk inp = do
-  cmd [WithStdout True
+  cmd [Cwd (takeDirectory inp)
+      ,WithStdout True
       ,EchoStdout False
       ,EchoStderr False
       ,Stdin ""
-      ] bin ["-g", "-shell-escape", "-pdfxe", inp]
+      ] bin ["-g", "-shell-escape", "-pdfxe", dropDirectory1 inp]
   where bin = "latexmk" :: String

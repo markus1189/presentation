@@ -1,6 +1,7 @@
 \documentclass{beamer}
  
 \usepackage[utf8]{inputenc}
+\usepackage{textpos}
 
 % Font configuration
 \usepackage{fontspec}
@@ -9,21 +10,14 @@
 \setmonofont{Source Sans Pro}
 
 % Minted configuration for source code highlighting
-\usepackage[cache=false]{minted}
-\usepackage{mdframed}
-
-\BeforeBeginEnvironment{minted}{\begin{mdframed}}
-\AfterEndEnvironment{minted}{\end{mdframed}}
-
-\usemintedstyle{fruity}
+\usepackage{minted}
 
 % Use the include theme
 \usetheme{codecentric}
 
 % Metadata
-\title{Title Of Presentation}
-\author{John Smith}
-\institute{codecentric AG}
+\title{Demo Beamer Template}
+\author{Markus Hauck}
 \date{\today}
 
 % The presentation content
@@ -55,9 +49,31 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{minted}{scala}
-    Test
-  \end{minted}
+  \frametitle{I can haz Source Code}
+  \begin{center}
+\begin{minted}{scala}
+object Main extends App {
+  implicit val sys = ActorSystem()
+  implicit val mat = ActorMaterializer()
+  
+  sys.actorOf[MainActor]
+}
+\end{minted}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{I can haz Source Code more}
+  \begin{center}
+\begin{minted}{haskell}
+main :: IO ()
+main = shakeArgs shakeOptions $ do
+  want ["world dominance"]
+
+  "world dominance" %> \out ->
+    executePlan out
+\end{minted}
+  \end{center}
 \end{frame}
 
 \section{Conclusion}

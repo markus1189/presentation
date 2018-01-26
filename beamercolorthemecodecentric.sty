@@ -10,8 +10,11 @@
 
 \mode<presentation>
 
-\definecolor{beamer@ccblue}{RGB}{29,156,172} % use structure theme to change
-\definecolor{beamer@ccgreen}{RGB}{115,175,104} % use structure theme to change
+% http://cc-style-guide.businesscatalyst.com/web-colors.html
+\definecolor{beamer@codeblue}{RGB}{0,174,210}
+\definecolor{beamer@centricgreen}{RGB}{66,211,165}
+\definecolor{beamer@ccdarkgreen}{RGB}{22,89,76}
+\definecolor{beamer@ccdarkblue}{RGB}{0,68,82}
 
 \setbeamercolor{normal text}{fg=black,bg=white}
 \setbeamercolor{alerted text}{fg=red}
@@ -22,10 +25,10 @@
 \setbeamercolor{background canvas}{bg=white!90}
 \setbeamercolor{background}{parent=background canvas}
 
-\setbeamercolor{palette primary}{fg=beamer@ccblue}
-\setbeamercolor{palette secondary}{fg=beamer@ccblue}
-\setbeamercolor{palette tertiary}{fg=beamer@ccgreen}
-\setbeamercolor{palette quaternary}{fg=beamer@ccgreen}
+\setbeamercolor{palette primary}{fg=beamer@codeblue}
+\setbeamercolor{palette secondary}{fg=beamer@codeblue}
+\setbeamercolor{palette tertiary}{fg=beamer@centricgreen}
+\setbeamercolor{palette quaternary}{fg=beamer@centricgreen}
 
 \setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
 \setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
@@ -43,7 +46,7 @@
 \setbeamercolor{titlelike}{parent=structure}
 
 \setbeamercolor{title}{fg=black}
-\setbeamercolor{title in head/foot}{fg=black, parent=palette quaternary}
+\setbeamercolor{title in head/foot}{fg=beamer@codeblue, parent=palette quaternary}
 \setbeamercolor{title in sidebar}{parent=palette sidebar quaternary}
 
 \setbeamercolor{subtitle}{parent=title}
@@ -115,7 +118,7 @@
 \setbeamercolor{navigation symbols dimmed}{use=structure,fg=structure.fg!20!bg}
 \setbeamercolor{mini frame}{parent=section in head/foot}
 
-\setbeamercolor{block body}{fg=beamer@ccgreen}
+\setbeamercolor{block body}{fg=beamer@centricgreen}
 \setbeamercolor{block body alerted}{fg=red!60}
 \setbeamercolor{block body example}{}
 \setbeamercolor{block title}{parent=structure}
@@ -134,7 +137,7 @@
 \setbeamercolor{enumerate subitem}{parent=subitem}
 \setbeamercolor{enumerate subsubitem}{parent=subsubitem}
 
-\setbeamercolor{itemize item}{fg=beamer@ccblue}
+\setbeamercolor{itemize item}{fg=beamer@codeblue}
 \setbeamercolor{itemize subitem}{parent=subitem}
 \setbeamercolor{itemize subsubitem}{parent=subsubitem}
 

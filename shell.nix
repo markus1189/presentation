@@ -38,6 +38,7 @@ let
     ocgx2
     pgf
     scheme-medium
+    textpos
     todonotes
     upquote
     xcolor
