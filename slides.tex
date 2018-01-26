@@ -1,0 +1,74 @@
+\documentclass{beamer}
+ 
+\usepackage[utf8]{inputenc}
+
+% Font configuration
+\usepackage{fontspec}
+\setmainfont{Nunito}
+\setsansfont{Nunito Sans}
+\setmonofont{Source Sans Pro}
+
+% Minted configuration for source code highlighting
+\usepackage[cache=false]{minted}
+\usepackage{mdframed}
+
+\BeforeBeginEnvironment{minted}{\begin{mdframed}}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+\usemintedstyle{fruity}
+
+% Use the include theme
+\usetheme{codecentric}
+
+% Metadata
+\title{Title Of Presentation}
+\author{John Smith}
+\institute{codecentric AG}
+\date{\today}
+
+% The presentation content
+\begin{document}
+ 
+\frame{\titlepage}
+
+\section{Introduction}
+\label{sec:introduction}
+ 
+\begin{frame}
+\frametitle{The First Awesome Slide}
+\begin{itemize}
+\item \textbf{text in bold}
+\item \textit{text in italicc}
+\item \texttt{text in mono}
+\end{itemize}
+\end{frame}
+
+\section{Main Part}
+\label{sec:main-part}
+\begin{frame}
+  \frametitle{The Main Part}
+  \begin{itemize}
+  \item This is where
+  \item the really interesting
+  \item stuff happens!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{scala}
+    Test
+  \end{minted}
+\end{frame}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\begin{frame}
+  \begin{center}
+    \huge
+    Your conclusion here
+  \end{center}
+\end{frame}
+ 
+\end{document}
+
