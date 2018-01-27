@@ -21,6 +21,7 @@ let
     chngcntr
     cleveref
     enumitem
+    environ
     etoolbox
     excludeonly
     fancyvrb
@@ -38,8 +39,10 @@ let
     ocgx2
     pgf
     scheme-medium
+    tcolorbox
     textpos
     todonotes
+    trimspaces
     upquote
     xcolor
     xstring
