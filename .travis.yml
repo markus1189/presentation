@@ -3,15 +3,3 @@ language:
 
 script:
   - "./Build.hs"
-
-after_success:
-  - git config --global user.email "travis-ci@travis.org"
-  - git config --global user.name "Travis CI"
-  - git checkout -b pdf
-  - git add -f result/slides.pdf
-  - git commit -m "$(date --iso-8601) @ $(git rev-list --max-count=1 --abbrev-commit $TRAVIS_BRANCH)" -m "[skip ci]"
-  - git push -f origin pdf
-  
-branches:
-  except:
-    - pdf
