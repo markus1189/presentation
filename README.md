@@ -1,5 +1,7 @@
 # Person Presentation Template For LaTeX Beamer
 
+[![Build Status](https://travis-ci.org/markus1189/presentation.svg?branch=master)](https://travis-ci.org/markus1189/presentation)
+
 ## Components
 
 - [Shake](http://shakebuild.com/) to build the presentation
