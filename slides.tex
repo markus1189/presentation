@@ -1,4 +1,7 @@
 \documentclass{beamer}
+
+% Must be loaded first
+\usepackage{tikz}
  
 \usepackage[utf8]{inputenc}
 \usepackage{textpos}
@@ -8,6 +11,11 @@
 \setmainfont{Nunito}
 \setsansfont{Nunito Sans}
 \setmonofont{Source Sans Pro}
+
+% Tikz for beautiful drawings
+\usetikzlibrary{mindmap,backgrounds}
+\usetikzlibrary{arrows.meta,arrows}
+\usetikzlibrary{shapes.geometric}
 
 % Minted configuration for source code highlighting
 \usepackage{minted}
@@ -73,6 +81,15 @@ main = shakeArgs shakeOptions $ do
   "world dominance" %> \out ->
     executePlan out
 \end{minted}
+  \end{center}
+\end{frame}
+
+\section{Second Part}
+
+\begin{frame}
+  \frametitle{Mind Maps}
+  \begin{center}
+    \resizebox{0.8\textwidth}{!}{\input{mindmap}}
   \end{center}
 \end{frame}
 

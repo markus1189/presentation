@@ -45,7 +45,7 @@ rules = do
                                    ,"beamerouterthemecodecentric.sty"
                                    ,"beamerthemecodecentric.sty"
                                    ]
-    need (inp : theme)
+    need (inp : (buildDir </> "mindmap.tex") : theme)
     latexmk inp
 
   buildDir </> "*.tex" %> \out -> do
