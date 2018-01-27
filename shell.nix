@@ -48,11 +48,12 @@ let
   pyPackages = with pythonPackages; [ pygments ];
 in
   runCommand "slides-build-input" {
+    FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ google-fonts ]; };
+
     buildInputs = [
       coreutils
       eject
       ghcPackages
-      google-fonts
       graphviz
       imagemagick
       latexPackages
