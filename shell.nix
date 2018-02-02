@@ -1,6 +1,9 @@
-with import <nixpkgs> {};
+{ pkgs ? import <nixpkgs> {}
+, useCodecentricFont ? false
+}: with pkgs;
 
 let
+  codecentricFont = import ./cc-font.nix { inherit pkgs; };
   ghcPackages = ghc.withPackages (p: with p;
     [
       bytestring
@@ -51,7 +54,7 @@ let
   pyPackages = with pythonPackages; [ pygments ];
 in
   runCommand "slides-build-input" {
-    FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ google-fonts ]; };
+    FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ google-fonts ubuntu_font_family ] ++ (if useCodecentricFont then [codecentricFont] else []); };
 
     buildInputs = [
       coreutils
@@ -63,4 +66,6 @@ in
       unzip
       which
     ] ++ pyPackages;
+
+    USE_CC_FONT = lib.boolToString useCodecentricFont;
   } ""

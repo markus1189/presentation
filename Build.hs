@@ -5,8 +5,10 @@
 
 module Main where
 
-import           Development.Shake
-import           Development.Shake.FilePath
+import Control.Monad (when)
+import Data.List (isSuffixOf)
+import Development.Shake
+import Development.Shake.FilePath
 
 main :: IO ()
 main = runShakeBuild
@@ -37,7 +39,7 @@ phonyCommands = do
 
 rules :: Rules ()
 rules = do
-  buildDir </> "*.pdf" %> \out -> do
+  buildDir </> "slides.pdf" %> \out -> do
     let inp = out -<.> "tex"
         theme = map (buildDir </>) ["beamercolorthemecodecentric.sty"
                                    ,"beamerfontthemecodecentric.sty"
@@ -45,10 +47,15 @@ rules = do
                                    ,"beamerouterthemecodecentric.sty"
                                    ,"beamerthemecodecentric.sty"
                                    ]
-    need (inp : (buildDir </> "mindmap.tex") : theme)
+    need (inp : (buildDir </> "mindmap.tex") : (buildDir </> "font.tex") : theme)
     latexmk inp
 
+  buildDir </> "font.tex" %> \_ -> dumpFontFile
+
   buildDir </> "*.tex" %> \out -> do
+    when ("slides.tex" `isSuffixOf` out) $ do
+      dumpFontFile
+      return ()
     copyFileChanged (dropDirectory1 out) out
 
   buildDir </> "*.sty" %> \out -> do
@@ -63,3 +70,12 @@ latexmk inp = do
       ,Stdin ""
       ] bin ["-g", "-shell-escape", "-pdfxe", dropDirectory1 inp]
   where bin = "latexmk" :: String
+
+dumpFontFile :: Action ()
+dumpFontFile = do
+  putNormal ("dumping file to " ++ (buildDir </> "font.tex"))
+  -- Guaranteed to be present via `shell.nix`, although this couples shake and nix...
+  Just useCodecentricFont <- getEnv "USE_CC_FONT"
+  let filename = if useCodecentricFont == "true" then "font_cc.tex" else "font_non_cc.tex"
+      outname = (buildDir </> "font.tex")
+  copyFile' filename outname

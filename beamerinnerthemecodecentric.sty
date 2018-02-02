@@ -2,7 +2,6 @@
 
 \defbeamertemplate*{title page}{}
 {
-  \vbox{}
   \vfill
   \begingroup
     \centering
@@ -21,12 +20,16 @@
     \begin{beamercolorbox}[sep=8pt,center]{institute}
       \usebeamerfont{institute}\insertinstitute{}
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,center]{date}
-      \usebeamerfont{date}\insertdate{}
-    \end{beamercolorbox}\vskip0.5em
+    % \begin{beamercolorbox}[sep=8pt,center]{date}
+    %   \usebeamerfont{date}\insertdate{}
+    % \end{beamercolorbox}\vskip0.5em
     {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
   \endgroup
   \vfill
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{../static-images/cc-logo.png}
+  \end{center}
+  \vspace*{-15mm}
 }
 
 \setbeamertemplate{items}[circle]

@@ -8,9 +8,8 @@
 
 % Font configuration
 \usepackage{fontspec}
-\setmainfont{Nunito}
-\setsansfont{Nunito Sans}
-\setmonofont{Source Sans Pro}
+
+\input{font.tex}
 
 % Tikz for beautiful drawings
 \usetikzlibrary{mindmap,backgrounds}
@@ -19,9 +18,11 @@
 
 % Minted configuration for source code highlighting
 \usepackage{minted}
-\usepackage{tcolorbox}
-\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
-\AfterEndEnvironment{minted}{\end{tcolorbox}}
+\setminted{highlightcolor=black!5, linenos}
+\setminted{style=lovelace}
+
+\usepackage[listings, minted]{tcolorbox}
+\tcbset{left=6mm}
 
 % Use the include theme
 \usetheme{codecentric}
@@ -29,12 +30,13 @@
 % Metadata
 \title{Demo Beamer Template}
 \author{Markus Hauck}
-\date{\today}
 
 % The presentation content
 \begin{document}
- 
-\frame{\titlepage}
+
+\begin{frame}[noframenumbering,plain]
+  \titlepage
+\end{frame}
 
 \section{Introduction}
 \label{sec:introduction}
@@ -42,6 +44,7 @@
 \begin{frame}
 \frametitle{The First Awesome Slide}
 \begin{itemize}
+\item normal text
 \item \textbf{text in bold}
 \item \textit{text in italics}
 \item \texttt{text in mono}
@@ -77,7 +80,7 @@ object Main extends App {
   \frametitle{I can haz Source Code more}
   You can also highlight lines:
   \begin{center}
-\begin{minted}[highlightlines={3}, highlightcolor=beamer@centricgreen!40]{haskell}
+\begin{minted}[highlightlines={3}]{haskell}
 main :: IO ()
 main = shakeArgs shakeOptions $ do
   want ["world dominance"]
@@ -97,6 +100,36 @@ main = shakeArgs shakeOptions $ do
   \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Colorful Boxes}
+  \begin{tcolorbox}[
+    fonttitle=\sffamily\bfseries\large,
+    colbacktitle=black,
+    colframe=black,
+    coltitle=beamer@centricgreen,
+    title=Hello World
+    ]
+    This is a \textbf{tcolorbox}.
+  \end{tcolorbox}
+  \begin{tcolorbox}[
+    fonttitle=\sffamily\bfseries\large,
+    colbacktitle=black,
+    colframe=black,
+    coltitle=beamer@codeblue,
+    title=Hello World
+    ]
+    This is a \textbf{tcolorbox}.
+  \end{tcolorbox}
+  \begin{tcolorbox}[
+    fonttitle=\sffamily\bfseries\large,
+    colbacktitle=black,
+    colframe=black,
+    title=Hello World
+    ]
+    This is a \textbf{tcolorbox}.
+  \end{tcolorbox}
+\end{frame}
+
 \section{Conclusion}
 \label{sec:conclusion}
 
@@ -108,4 +141,3 @@ main = shakeArgs shakeOptions $ do
 \end{frame}
  
 \end{document}
-
